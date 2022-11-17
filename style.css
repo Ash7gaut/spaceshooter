@@ -1,0 +1,15 @@
+
+body {
+    margin: 0;
+    background-image: url(/jeu/SpaceShooterRedux/Backgrounds/blue.png);
+    font-family: "KenVector Future" ;
+    max-width: 100%;
+    overflow-y: hidden;
+
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
