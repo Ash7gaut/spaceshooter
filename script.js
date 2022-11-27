@@ -125,6 +125,12 @@ const rectangle = new Path.Rectangle(start, end);
 // rectangle.strokeWidth = 1;
 
 //deplacement player
+view.onFrame = function () {
+  if(moveLaserPlayer){
+  laserPlayer.position.y -= 10;
+  }
+}
+
 view.onKeyDown = function (event) {
     switch (event.key) {
       case "left":
@@ -147,9 +153,16 @@ view.onKeyDown = function (event) {
             playerGroup.position.y += 50;
           }
         break;
-        case "space":
-          laserPlayer.visible = true
-          laserPlayer.position=playerGroup.position
+          case "space":
+            if (laserPlayer.visible==false){
+            laserPlayer.visible = true
+            laserPlayer.position=playerGroup.position;
+            moveLaserPlayer = true
+            }
+              if (laserPlayer.position.y<=0){
+            laserPlayer.position=playerGroup.position;
+            moveLaserPlayer = true
+              }
         break;
     }
 }
@@ -161,10 +174,7 @@ const audio = new Audio ('')
 
 // laser
 
-const laserPlayer = new Raster({ source: "SpaceShooterRedux/PNG/Lasers/laserRed01.png"});
-laserPlayer.position = playerGroup.position;
-laserPlayer.visible = false
+let moveLaserPlayer = false
 
-view.onFrame = function () {
-  laserPlayer.position.y -= 6;
-};
+const laserPlayer = new Raster({ source: "SpaceShooterRedux/PNG/Lasers/laserRed01.png"});
+laserPlayer.visible = false;
